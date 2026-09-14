@@ -56,9 +56,36 @@
   header.top{
     background:var(--navy);
     color:var(--paper);
-    padding:64px 0 56px;
+    padding:72px 0 0;
+    overflow:hidden;
+    position:relative;
   }
-  header.top .wrap{display:flex;flex-direction:column;gap:18px;}
+  header.top::before{
+    content:"";
+    position:absolute;
+    right:-120px; top:-120px;
+    width:420px; height:420px;
+    border:1px solid rgba(226,161,58,0.18);
+    border-radius:50%;
+  }
+  header.top::after{
+    content:"";
+    position:absolute;
+    right:-40px; top:-40px;
+    width:280px; height:280px;
+    border:1px solid rgba(226,161,58,0.14);
+    border-radius:50%;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:56px;
+    align-items:end;
+    position:relative;
+    z-index:1;
+    padding-bottom:0;
+  }
+  .hero-copy{padding-bottom:48px;}
   .kicker{
     font-size:0.95rem;
     color:var(--marigold);
@@ -66,15 +93,18 @@
   }
   header.top h1{
     color:#fff;
-    font-size:clamp(2.1rem, 5vw, 3.1rem);
-    max-width:14ch;
+    font-size:clamp(2.2rem, 4.4vw, 3.3rem);
+    max-width:15ch;
+    margin-top:14px;
+    line-height:1.12;
   }
-  header.top p{
-    max-width:56ch;
+  header.top .lede{
+    max-width:52ch;
     color:#cfd4e2;
-    font-size:1.05rem;
+    font-size:1.08rem;
+    margin-top:18px;
   }
-  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;}
   .btn{
     display:inline-block;
     padding:12px 22px;
@@ -85,6 +115,45 @@
   }
   .btn-primary{background:var(--marigold);color:var(--navy-deep);}
   .btn-ghost{border:1px solid #4c597a;color:#e8ebf2;}
+
+  .hero-facts{
+    border-left:1px solid rgba(226,161,58,0.35);
+    padding:2px 0 48px 32px;
+  }
+  .hero-facts dl{display:grid;gap:20px;}
+  .hero-facts .fact + .fact{padding-top:18px;border-top:1px solid rgba(207,212,226,0.16);}
+  .hero-facts dt{
+    font-size:0.8rem;
+    color:#96a0bd;
+    margin-bottom:4px;
+  }
+  .hero-facts dd{
+    font-family:'Source Serif 4',serif;
+    font-size:1.08rem;
+    color:#f5f2e9;
+    font-weight:600;
+  }
+
+  nav.subnav{
+    background:#efe9da;
+    border-bottom:1px solid var(--line);
+  }
+  nav.subnav .wrap{
+    display:flex;
+    gap:26px;
+    overflow-x:auto;
+    padding-top:14px;
+    padding-bottom:14px;
+  }
+  nav.subnav a{
+    font-size:0.86rem;
+    color:var(--navy);
+    text-decoration:none;
+    white-space:nowrap;
+    font-weight:500;
+    opacity:0.75;
+  }
+  nav.subnav a:hover{opacity:1;}
 
   section{padding:56px 0;border-bottom:1px solid var(--line);}
   section:last-of-type{border-bottom:none;}
@@ -108,6 +177,11 @@
 
   .grid-two{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
   @media (max-width:640px){.grid-two{grid-template-columns:1fr;}}
+  @media (max-width:720px){
+    .hero-grid{grid-template-columns:1fr;gap:0;}
+    .hero-facts{border-left:none;border-top:1px solid rgba(226,161,58,0.35);padding:24px 0 40px;margin-top:8px;}
+    .hero-facts dl{grid-template-columns:1fr 1fr;}
+  }
 
   ul.plain{list-style:none;}
   ul.plain li{
@@ -246,6 +320,22 @@
         "@type": "Answer",
         "text": "The fee varies by category and is announced with the official notification; general category candidates typically pay a higher fee than reserved categories."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the REAP merit list decided?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Seats are allotted mainly on JEE Main All India Rank within each category. Ties are generally resolved using Class 12 marks and then date of birth, per RTU's published rule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are REAP registration and choice-locking fees refundable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, fees paid for registration and choice-locking are generally non-refundable under RTU's published policy."
+      }
     }
   ]
 }
@@ -269,23 +359,51 @@
 <body>
 
 <header class="top">
-  <div class="wrap">
-    <div class="kicker">Rajasthan Engineering Admission Process</div>
-    <h1>REAP 2027: dates, eligibility &amp; admission process</h1>
-    <p>A single reference for candidates applying to B.Tech programmes at Rajasthan Technical University-affiliated colleges through REAP 2027.</p>
-    <div class="cta-row">
-      <a href="#dates" class="btn btn-primary">See key dates</a>
-      <a href="#process" class="btn btn-ghost">How to apply</a>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="kicker">Rajasthan Engineering Admission Process</div>
+      <h1>REAP 2027: dates, eligibility &amp; admission process</h1>
+      <p class="lede">A single reference for candidates applying to B.Tech programmes at Rajasthan Technical University-affiliated colleges through REAP 2027 — from registration to seat allotment.</p>
+      <div class="cta-row">
+        <a href="#dates" class="btn btn-primary">See key dates</a>
+        <a href="#process" class="btn btn-ghost">How to apply</a>
+      </div>
     </div>
-    <nav style="margin-top:10px;font-size:0.88rem;">
-      <a href="#about" style="color:#aeb6cc;margin-right:16px;">About</a>
-      <a href="#eligibility" style="color:#aeb6cc;margin-right:16px;">Eligibility</a>
-      <a href="#documents" style="color:#aeb6cc;margin-right:16px;">Documents</a>
-      <a href="#colleges" style="color:#aeb6cc;margin-right:16px;">Colleges</a>
-      <a href="#process" style="color:#aeb6cc;">Counselling</a>
-    </nav>
+    <div class="hero-facts">
+      <dl>
+        <div class="fact">
+          <dt>Conducting authority</dt>
+          <dd>Rajasthan Technical University (RTU)</dd>
+        </div>
+        <div class="fact">
+          <dt>Programme</dt>
+          <dd>B.Tech, first year</dd>
+        </div>
+        <div class="fact">
+          <dt>Admission basis</dt>
+          <dd>JEE Main rank + state criteria</dd>
+        </div>
+        <div class="fact">
+          <dt>Session</dt>
+          <dd>2027–28</dd>
+        </div>
+      </dl>
+    </div>
   </div>
 </header>
+
+<nav class="subnav">
+  <div class="wrap">
+    <a href="#about">About</a>
+    <a href="#eligibility">Eligibility</a>
+    <a href="#documents">Documents</a>
+    <a href="#colleges">Colleges</a>
+    <a href="#process">Counselling</a>
+    <a href="#merit">Merit &amp; choices</a>
+    <a href="#scholarships">Scholarships</a>
+    <a href="#contact">Helpdesk</a>
+  </div>
+</nav>
 
 <section id="about">
   <div class="wrap">
@@ -397,6 +515,64 @@
   </div>
 </section>
 
+<section id="merit">
+  <div class="wrap grid-two">
+    <div>
+      <h2>How the merit list works</h2>
+      <ul class="plain">
+        <li>Seats are allotted primarily on JEE Main All India Rank (AIR), category-wise</li>
+        <li>Within each category, candidates are ranked and matched to choices in order</li>
+        <li>Ties at the same rank are typically resolved using Class 12 marks, then date of birth, as per RTU's published tie-breaking rule</li>
+        <li>A candidate is allotted the highest-preference choice their rank makes possible in that round</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Choice filling — what matters</h2>
+      <ul class="plain">
+        <li>List every college-branch combination you'd genuinely accept, not just top picks</li>
+        <li>Order choices by real preference, not just branch popularity — a lower-ranked choice you'd accept is better than leaving options out</li>
+        <li>Choices can usually be edited until the lock deadline for each round — review before locking</li>
+        <li>An unlocked or unfilled choice list can mean no allotment in that round</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="scholarships">
+  <div class="wrap grid-two">
+    <div>
+      <h2>Scholarships &amp; fee waivers</h2>
+      <ul class="plain">
+        <li>TFW (Tuition Fee Waiver) seats for candidates from economically weaker backgrounds meeting income criteria</li>
+        <li>Rajasthan state government scholarship schemes for SC/ST/OBC/minority students</li>
+        <li>National Means-cum-Merit and post-matric scholarships, applied for separately after admission</li>
+        <li>Some private colleges offer merit-based fee concessions — check with the institute directly</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Important instructions</h2>
+      <ul class="plain">
+        <li>Use a working mobile number and email — all REAP communication goes through these</li>
+        <li>Keep scanned documents ready in the specified format and size before starting registration</li>
+        <li>Fees paid for registration and choice-locking are generally non-refundable</li>
+        <li>Once a seat is accepted and reported, exit or upgrade rules follow RTU's published policy for that round</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Helpdesk &amp; support</h2>
+    <ul class="plain">
+      <li>Official REAP helpdesk contact details are published with the counselling notification each year</li>
+      <li>For portal or login issues, use the technical support contact listed on the REAP website</li>
+      <li>For document or eligibility queries, colleges' individual admission cells can also assist</li>
+      <li>Always cross-check any phone number or email against the official REAP portal before sharing personal documents</li>
+    </ul>
+  </div>
+</section>
+
 <section class="faq">
   <div class="wrap">
     <h2>Frequently asked questions</h2>
@@ -424,12 +600,20 @@
       <summary>What is the application fee for REAP 2027?</summary>
       <p>The fee varies by category and is announced with the official notification; general category candidates typically pay a higher fee than reserved categories.</p>
     </details>
+    <details>
+      <summary>How is the REAP merit list decided?</summary>
+      <p>Seats are allotted mainly on JEE Main All India Rank within each category. Ties are generally resolved using Class 12 marks and then date of birth, per RTU's published rule.</p>
+    </details>
+    <details>
+      <summary>Are REAP registration and choice-locking fees refundable?</summary>
+      <p>No, fees paid for registration and choice-locking are generally non-refundable under RTU's published policy.</p>
+    </details>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <span>REAP 2027 </span>
+    <span>REAP 2027</span>
   </div>
 </footer>
 
