@@ -26,7 +26,7 @@
         content="Complete guide to REAP 2027 registration by CEG Rajasthan. Check ₹885 registration fee, 3-tier priority, eligibility criteria, required documents &amp; schedule." />
     <meta property="og:url" content="https://reap2027.in/registration" />
     <meta property="og:locale" content="en_IN" />
-    <meta property="og:image" content="https://reap2027.in/og-image.jpg" />
+    <meta property="og:image" content="https://reap2027.in/reap.webp" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="REAP 2027 Registration Guide - Rajasthan Engineering Admission Process" />
@@ -39,7 +39,7 @@
     <meta name="twitter:title" content="REAP 2027 Registration: ₹885 Fee, Eligibility, Process &amp; Dates" />
     <meta name="twitter:description"
         content="Complete guide to REAP 2027 registration by CEG Rajasthan: ₹885 fee, 3-tier priority, eligibility criteria, document checklist &amp; counselling process." />
-    <meta name="twitter:image" content="https://reap2027.in/og-image.jpg" />
+    <meta name="twitter:image" content="https://reap2027.in/reap.webp" />
     <meta name="twitter:image:alt" content="REAP 2027 Registration Guide" />
 
     <!-- Resource Preconnect & Stylesheets -->
@@ -77,12 +77,9 @@
           "isPartOf": {
             "@id": "https://reap2027.in/#website"
           },
-          "breadcrumb": {
-            "@id": "https://reap2027.in/registration#breadcrumb"
-          },
           "inLanguage": "en-IN",
           "datePublished": "2026-05-01T09:00:00+05:30",
-          "dateModified": "2026-10-20T12:00:00+05:30",
+          "dateModified": "2026-10-21T00:00:00+05:30",
           "author": {
             "@type": "GovernmentOrganization",
             "name": "Centre for Electronic Governance (CEG), Rajasthan",
@@ -538,6 +535,10 @@
             color: var(--navy-dark);
             cursor: pointer;
             padding: 0.5rem;
+            min-width: 44px;
+            min-height: 44px;
+            align-items: center;
+            justify-content: center;
         }
 
         /* HERO */
@@ -710,6 +711,7 @@
         .table-responsive {
             width: 100%;
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
             border-radius: var(--radius-md);
             border: 1px solid var(--slate-border);
             box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
@@ -1098,9 +1100,12 @@
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 70px;
+                top: 100%;
                 left: 0;
                 right: 0;
+                max-height: calc(100vh - 75px);
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
                 background: #ffffff;
                 padding: 1rem 1.25rem;
                 border-bottom: 1px solid var(--slate-border);
@@ -1121,7 +1126,7 @@
             }
 
             .mobile-toggle {
-                display: block;
+                display: inline-flex;
             }
         }
 
@@ -1152,8 +1157,8 @@
 
             .data-table th,
             .data-table td {
-                padding: 0.75rem 0.85rem;
-                font-size: 0.84rem;
+                padding: 0.65rem 0.75rem;
+                font-size: 0.82rem;
             }
         }
 
@@ -1235,6 +1240,12 @@
                 font-size: 1rem;
             }
 
+            .data-table th,
+            .data-table td {
+                padding: 0.55rem 0.65rem;
+                font-size: 0.78rem;
+            }
+
             .faq-question {
                 padding: 0.95rem 1.15rem;
                 font-size: 0.92rem;
@@ -1246,6 +1257,42 @@
 
             .footer-nav a {
                 font-size: 0.82rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 0 0.75rem;
+            }
+
+            .section {
+                padding: 2rem 0;
+            }
+
+            .section-title {
+                font-size: 1.35rem;
+            }
+
+            .hero-title {
+                font-size: 1.45rem;
+            }
+
+            .hero-info-card {
+                padding: 0.8rem 0.85rem;
+            }
+
+            .hero-info-num {
+                font-size: 1.2rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.5rem 0.55rem;
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -1261,6 +1308,7 @@
             </a>
             <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
                 <a href="/" class="nav-link">Home</a>
+                <a href="/counselling" class="nav-link" style="color:var(--emerald);font-weight:700;"><i class="fas fa-compass"></i> Counselling</a>
                 <a href="#overview" class="nav-link">Overview</a>
                 <a href="#fees" class="nav-link">Fee Details</a>
                 <a href="#eligibility" class="nav-link">Eligibility</a>
@@ -1375,7 +1423,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Programs Offered</strong></td>
-                                <td>Bachelor of Engineering / Bachelor of Technology (B.E./B.Tech — 4 Years) and Bachelor of Architecture (B.Arch — 5 Years) across premier government colleges (<a href="index.html#cutoffs">MBM Jodhpur</a>, <a href="index.html#cutoffs">CTAE Udaipur</a>, <a href="index.html#cutoffs">RTU Kota</a>)</td>
+                                <td>Bachelor of Engineering / Bachelor of Technology (B.E./B.Tech — 4 Years) and Bachelor of Architecture (B.Arch — 5 Years) across premier government colleges (<a href="/#cutoffs">MBM Jodhpur</a>, <a href="/#cutoffs">CTAE Udaipur</a>, <a href="/#cutoffs">RTU Kota</a>)</td>
                             </tr>
                             <tr>
                                 <td><strong>Application / Counselling Fee</strong></td>
@@ -1385,11 +1433,11 @@
                             </tr>
                             <tr>
                                 <td><strong>Merit Admission Hierarchy</strong></td>
-                                <td><a href="index.html#merit"><strong>Priority 1:</strong> JEE Main 2027 Rank (CRL) &gt; <strong>Priority 2:</strong> Class 12th PCM % &gt; <strong>Priority 3:</strong> Diploma %</a></td>
+                                <td><a href="/#merit"><strong>Priority 1:</strong> JEE Main 2027 Rank (CRL) &gt; <strong>Priority 2:</strong> Class 12th PCM % &gt; <strong>Priority 3:</strong> Diploma %</a></td>
                             </tr>
                             <tr>
                                 <td><strong>Quota Allocation</strong></td>
-                                <td><a href="index.html#quotas">85% Rajasthan State Domicile Quota + 15% Outside Rajasthan (OR) All India Quota</a></td>
+                                <td><a href="/#quotas">85% Rajasthan State Domicile Quota + 15% Outside Rajasthan (OR) All India Quota</a></td>
                             </tr>
                             <tr>
                                 <td><strong>Official Registration Portals</strong></td>
@@ -2264,57 +2312,6 @@
             </div>
         </section>
 
-        <!-- SECTION 10: OFFICIAL HELPDESK & CONTACTS -->
-        <section class="section" id="contact">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">REAP 2027 Official Helpdesk &amp; Support Centers</h2>
-                    <p class="section-subtitle">
-                        Official contact information for technical assistance, payment verification, and admissions
-                        advisory.
-                    </p>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="data-table" aria-label="Official Helpdesk Details">
-                        <thead>
-                            <tr>
-                                <th>Support Channel</th>
-                                <th>Official Details &amp; Contact Information</th>
-                                <th>Operating Hours</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Conducting Authority Address</strong></td>
-                                <td>Centre for Electronic Governance (CEG), Near Govt. R.C. Khaitan Polytechnic College,
-                                    Jhalana Doongri, Jaipur - 302004, Rajasthan</td>
-                                <td>Mon–Sat (10:00 AM – 5:00 PM)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Official Telephone Helpline</strong></td>
-                                <td><a href="tel:01412702344" style="font-weight:700;">0141-2702344</a> / 0141-2702345
-                                </td>
-                                <td>Mon–Sat (10:00 AM – 5:00 PM)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Official Support Email</strong></td>
-                                <td><a href="mailto:ceghelpdesk@rajasthan.gov.in"
-                                        style="font-weight:700;">ceghelpdesk@rajasthan.gov.in</a></td>
-                                <td>24x7 Query Resolution Window</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Official Web Portals</strong></td>
-                                <td><a href="https://ceg.rajasthan.gov.in" target="_blank"
-                                        rel="noopener">ceg.rajasthan.gov.in</a> | <a href="https://reap2027.in/"
-                                        target="_blank" rel="noopener">REAP 2027</a></td>
-                                <td>Continuous Real-time Updates</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
 
     </main>
 
@@ -2323,15 +2320,16 @@
         <div class="container">
             <nav aria-label="Footer Navigation">
                 <ul class="footer-nav">
-                    <li><a href="index.html#overview">Overview</a></li>
-                    <li><a href="registration">Registration Guide</a></li>
-                    <li><a href="index.html#merit">Merit List</a></li>
-                    <li><a href="index.html#eligibility">Eligibility</a></li>
-                    <li><a href="index.html#quotas">Reservation</a></li>
-                    <li><a href="index.html#dates">Important Dates</a></li>
-                    <li><a href="index.html#roadmap">Counselling Process</a></li>
-                    <li><a href="index.html#cutoffs">Cutoffs</a></li>
-                    <li><a href="index.html#documents">Documents</a></li>
+                    <li><a href="/#overview">Overview</a></li>
+                    <li><a href="/registration">Registration Guide</a></li>
+                    <li><a href="/counselling">Counselling &amp; Upward Movement</a></li>
+                    <li><a href="/#merit">Merit List</a></li>
+                    <li><a href="/#eligibility">Eligibility</a></li>
+                    <li><a href="/#quotas">Reservation</a></li>
+                    <li><a href="/#dates">Important Dates</a></li>
+                    <li><a href="/counselling#rounds">Counselling Process</a></li>
+                    <li><a href="/#cutoffs">Cutoffs</a></li>
+                    <li><a href="/counselling#reporting">Documents</a></li>
                 </ul>
             </nav>
             <p class="footer-copy">
@@ -2355,7 +2353,17 @@
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 mobileToggle.querySelector('i').className = 'fas fa-bars';
+                mobileToggle.setAttribute('aria-expanded', 'false');
             });
+        });
+
+        // Close mobile nav on click outside
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                mobileToggle.querySelector('i').className = 'fas fa-bars';
+                mobileToggle.setAttribute('aria-expanded', 'false');
+            }
         });
 
         // FAQ Accordion (identical logic as index.html)
