@@ -1298,31 +1298,10 @@
     </style>
 </head>
 
-<body>
+<body data-page="registration">
 
-    <!-- NAVBAR (Identical to index.html UI) -->
-    <header class="site-nav">
-        <div class="container nav-inner">
-            <a href="/" class="brand-logo" aria-label="REAP 2027">
-                <div><span class="brand-title">REAP 2027</span></div>
-            </a>
-            <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/counselling" class="nav-link" style="color:var(--emerald);font-weight:700;"><i class="fas fa-compass"></i> Counselling</a>
-                <a href="#overview" class="nav-link">Overview</a>
-                <a href="#fees" class="nav-link">Fee Details</a>
-                <a href="#eligibility" class="nav-link">Eligibility</a>
-                <a href="#roadmap" class="nav-link">Process Guide</a>
-                <a href="#documents" class="nav-link">Documents</a>
-                <a href="#reservation" class="nav-link">Reservation</a>
-                <a href="#dates" class="nav-link">Dates</a>
-                <a href="#faqs" class="nav-link">FAQs</a>
-            </nav>
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
+    <!-- NAVBAR (Rendered dynamically via common.js) -->
+    <header class="site-nav" id="site-header"></header>
 
     <main id="main-content">
 
@@ -2316,56 +2295,14 @@
     </main>
 
     <!-- FOOTER (Identical to index.html UI) -->
-    <footer class="site-footer">
-        <div class="container">
-            <nav aria-label="Footer Navigation">
-                <ul class="footer-nav">
-                    <li><a href="/#overview">Overview</a></li>
-                    <li><a href="/registration">Registration Guide</a></li>
-                    <li><a href="/counselling">Counselling &amp; Upward Movement</a></li>
-                    <li><a href="/#merit">Merit List</a></li>
-                    <li><a href="/#eligibility">Eligibility</a></li>
-                    <li><a href="/#quotas">Reservation</a></li>
-                    <li><a href="/#dates">Important Dates</a></li>
-                    <li><a href="/counselling#rounds">Counselling Process</a></li>
-                    <li><a href="/#cutoffs">Cutoffs</a></li>
-                    <li><a href="/counselling#reporting">Documents</a></li>
-                </ul>
-            </nav>
-            <p class="footer-copy">
-                &copy; REAP 2027. All Rights Reserved. Rajasthan Engineering Admission Process.
-            </p>
-        </div>
-    </footer>
+    <!-- FOOTER (Rendered dynamically via common.js) -->
+    <footer class="site-footer" id="site-footer"></footer>
 
-    <!-- INTERACTIVE JAVASCRIPT (Matching index.html scripts) -->
+    <!-- Common Navigation & Footer Script -->
+    <script src="common.js"></script>
+
+    <!-- INTERACTIVE JAVASCRIPT (Page Specific) -->
     <script>
-        // Mobile Nav Toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navMenu = document.getElementById('navMenu');
-        mobileToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const isOpen = navMenu.classList.contains('active');
-            mobileToggle.setAttribute('aria-expanded', isOpen);
-            mobileToggle.querySelector('i').className = isOpen ? 'fas fa-times' : 'fas fa-bars';
-        });
-        navMenu.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileToggle.querySelector('i').className = 'fas fa-bars';
-                mobileToggle.setAttribute('aria-expanded', 'false');
-            });
-        });
-
-        // Close mobile nav on click outside
-        document.addEventListener('click', (e) => {
-            if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
-                navMenu.classList.remove('active');
-                mobileToggle.querySelector('i').className = 'fas fa-bars';
-                mobileToggle.setAttribute('aria-expanded', 'false');
-            }
-        });
-
         // FAQ Accordion (identical logic as index.html)
         function toggleFaq(btn) {
             const item = btn.closest('.faq-item');
