@@ -12,13 +12,15 @@
     const regUrl = isFileProtocol ? 'registration.html' : '/registration';
     const counselUrl = isFileProtocol ? 'counselling.html' : '/counselling';
     const eligUrl = isFileProtocol ? 'eligibility.html' : '/eligibility';
+    const resUrl = isFileProtocol ? 'reservation.html' : '/reservation';
 
-    // Determine current active page ('home', 'registration', 'counselling', or 'eligibility')
+    // Determine current active page ('home', 'registration', 'counselling', 'eligibility', or 'reservation')
     function getActivePage() {
         const bodyPage = document.body.getAttribute('data-page');
         if (bodyPage) return bodyPage.toLowerCase();
 
         const path = window.location.pathname.toLowerCase();
+        if (path.includes('reservation')) return 'reservation';
         if (path.includes('registration')) return 'registration';
         if (path.includes('counselling')) return 'counselling';
         if (path.includes('eligibility')) return 'eligibility';
@@ -37,8 +39,8 @@
                 <a href="${regUrl}" class="nav-link ${page === 'registration' ? 'active' : ''}" style="color:var(--primary);font-weight:700;"><i class="fas fa-edit"></i> Registration</a>
                 <a href="${counselUrl}" class="nav-link ${page === 'counselling' ? 'active' : ''}" style="color:var(--emerald);font-weight:700;"><i class="fas fa-compass"></i> Counselling</a>
                 <a href="${eligUrl}" class="nav-link ${page === 'eligibility' ? 'active' : ''}" style="color:var(--accent-cyan);font-weight:700;"><i class="fas fa-check-circle"></i> Eligibility</a>
+                <a href="${resUrl}" class="nav-link ${page === 'reservation' ? 'active' : ''}" style="color:var(--accent-gold);font-weight:700;"><i class="fas fa-users"></i> Reservation</a>
                 <a href="${homeUrl}#merit" class="nav-link">Merit List</a>
-                <a href="${homeUrl}#quotas" class="nav-link">Reservation</a>
                 <a href="${homeUrl}#dates" class="nav-link">Dates</a>
                 <a href="${homeUrl}#cutoffs" class="nav-link">Cutoffs</a>
             </nav>
@@ -59,7 +61,7 @@
                     <li><a href="${regUrl}">Registration</a></li>
                     <li><a href="${counselUrl}">Counselling</a></li>
                     <li><a href="${eligUrl}">Eligibility Criteria</a></li>
-                    <li><a href="${homeUrl}#quotas">Seat Reservation</a></li>
+                    <li><a href="${resUrl}">Seat Reservation</a></li>
                     <li><a href="${homeUrl}#dates">Important Dates</a></li>
                     <li><a href="${homeUrl}#roadmap">Counselling Process</a></li>
                     <li><a href="${homeUrl}#cutoffs">College Cutoffs</a></li>
@@ -110,7 +112,8 @@
                         (linkPath === homeUrl && getActivePage() === 'home') ||
                         (linkPath === regUrl && getActivePage() === 'registration') ||
                         (linkPath === counselUrl && getActivePage() === 'counselling') ||
-                        (linkPath === eligUrl && getActivePage() === 'eligibility');
+                        (linkPath === eligUrl && getActivePage() === 'eligibility') ||
+                        (linkPath === resUrl && getActivePage() === 'reservation');
 
                     if (isCurrentPageAnchor && targetId) {
                         const targetEl = document.getElementById(targetId);
