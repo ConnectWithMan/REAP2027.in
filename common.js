@@ -13,13 +13,15 @@
     const counselUrl = isFileProtocol ? 'counselling.html' : '/counselling';
     const eligUrl = isFileProtocol ? 'eligibility.html' : '/eligibility';
     const resUrl = isFileProtocol ? 'reservation.html' : '/reservation';
+    const docsUrl = isFileProtocol ? 'documents.html' : '/documents';
 
-    // Determine current active page ('home', 'registration', 'counselling', 'eligibility', or 'reservation')
+    // Determine current active page ('home', 'registration', 'counselling', 'eligibility', 'reservation', or 'documents')
     function getActivePage() {
         const bodyPage = document.body.getAttribute('data-page');
         if (bodyPage) return bodyPage.toLowerCase();
 
         const path = window.location.pathname.toLowerCase();
+        if (path.includes('document')) return 'documents';
         if (path.includes('reservation')) return 'reservation';
         if (path.includes('registration')) return 'registration';
         if (path.includes('counselling')) return 'counselling';
@@ -40,6 +42,7 @@
                 <a href="${counselUrl}" class="nav-link ${page === 'counselling' ? 'active' : ''}" style="color:var(--emerald);font-weight:700;"><i class="fas fa-compass"></i> Counselling</a>
                 <a href="${eligUrl}" class="nav-link ${page === 'eligibility' ? 'active' : ''}" style="color:var(--accent-cyan);font-weight:700;"><i class="fas fa-check-circle"></i> Eligibility</a>
                 <a href="${resUrl}" class="nav-link ${page === 'reservation' ? 'active' : ''}" style="color:var(--accent-gold);font-weight:700;"><i class="fas fa-users"></i> Reservation</a>
+                <a href="${docsUrl}" class="nav-link ${page === 'documents' ? 'active' : ''}" style="color:var(--purple);font-weight:700;"><i class="fas fa-file-invoice"></i> Documents</a>
                 <a href="${homeUrl}#merit" class="nav-link">Merit List</a>
                 <a href="${homeUrl}#dates" class="nav-link">Dates</a>
                 <a href="${homeUrl}#cutoffs" class="nav-link">Cutoffs</a>
@@ -62,6 +65,7 @@
                     <li><a href="${counselUrl}">Counselling</a></li>
                     <li><a href="${eligUrl}">Eligibility Criteria</a></li>
                     <li><a href="${resUrl}">Seat Reservation</a></li>
+                    <li><a href="${docsUrl}">Documents Required</a></li>
                     <li><a href="${homeUrl}#dates">Important Dates</a></li>
                     <li><a href="${homeUrl}#roadmap">Counselling Process</a></li>
                     <li><a href="${homeUrl}#cutoffs">College Cutoffs</a></li>
@@ -113,7 +117,8 @@
                         (linkPath === regUrl && getActivePage() === 'registration') ||
                         (linkPath === counselUrl && getActivePage() === 'counselling') ||
                         (linkPath === eligUrl && getActivePage() === 'eligibility') ||
-                        (linkPath === resUrl && getActivePage() === 'reservation');
+                        (linkPath === resUrl && getActivePage() === 'reservation') ||
+                        (linkPath === docsUrl && getActivePage() === 'documents');
 
                     if (isCurrentPageAnchor && targetId) {
                         const targetEl = document.getElementById(targetId);
