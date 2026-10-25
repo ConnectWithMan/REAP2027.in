@@ -46,8 +46,6 @@
                 <a href="${eligUrl}" class="nav-link ${page === 'eligibility' ? 'active' : ''}"><i class="fas fa-check-circle"></i> Eligibility</a>
                 <a href="${resUrl}" class="nav-link ${page === 'reservation' ? 'active' : ''}"><i class="fas fa-users"></i> Reservation</a>
                 <a href="${docsUrl}" class="nav-link ${page === 'documents' ? 'active' : ''}"><i class="fas fa-file-invoice"></i> Documents</a>
-                <a href="${homeUrl}#merit" class="nav-link"><i class="fas fa-list-ol"></i> Merit List</a>
-                <a href="${homeUrl}#dates" class="nav-link"><i class="fas fa-calendar-alt"></i> Dates</a>
                 <a href="${homeUrl}#cutoffs" class="nav-link"><i class="fas fa-chart-line"></i> Cutoffs</a>
             </nav>
             <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -69,7 +67,6 @@
                 <a href="${eligUrl}">Eligibility</a>
                 <a href="${resUrl}">Reservation</a>
                 <a href="${docsUrl}">Documents</a>
-                <a href="${homeUrl}#dates">Dates</a>
                 <a href="${homeUrl}#cutoffs">Cutoffs</a>
             </nav>
             <p class="footer-copy">
