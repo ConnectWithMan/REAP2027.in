@@ -7,19 +7,22 @@
     'use strict';
 
     // Clean URL routing across all pages
-    const homeUrl = '/';
-    const regUrl = '/registration';
-    const counselUrl = '/counselling';
-    const eligUrl = '/eligibility';
-    const resUrl = '/reservation';
-    const docsUrl = '/documents';
+    const isFile = window.location.protocol === 'file:' || !window.location.hostname;
+    const homeUrl = isFile ? 'index.html' : '/';
+    const regUrl = isFile ? 'registration.html' : '/registration';
+    const counselUrl = isFile ? 'counselling.html' : '/counselling';
+    const allotUrl = isFile ? 'seat-allotment.html' : '/seat-allotment';
+    const eligUrl = isFile ? 'eligibility.html' : '/eligibility';
+    const resUrl = isFile ? 'reservation.html' : '/reservation';
+    const docsUrl = isFile ? 'documents.html' : '/documents';
 
-    // Determine current active page ('home', 'registration', 'counselling', 'eligibility', 'reservation', or 'documents')
+    // Determine current active page ('home', 'registration', 'counselling', 'allotment', 'eligibility', 'reservation', or 'documents')
     function getActivePage() {
         const bodyPage = document.body.getAttribute('data-page');
         if (bodyPage) return bodyPage.toLowerCase();
 
         const path = window.location.pathname.toLowerCase();
+        if (path.includes('allotment')) return 'allotment';
         if (path.includes('document')) return 'documents';
         if (path.includes('reservation')) return 'reservation';
         if (path.includes('registration')) return 'registration';
@@ -39,6 +42,7 @@
                 <a href="${homeUrl}" class="nav-link ${page === 'home' ? 'active' : ''}"><i class="fas fa-home"></i> Home</a>
                 <a href="${regUrl}" class="nav-link ${page === 'registration' ? 'active' : ''}"><i class="fas fa-edit"></i> Registration</a>
                 <a href="${counselUrl}" class="nav-link ${page === 'counselling' ? 'active' : ''}"><i class="fas fa-compass"></i> Counselling</a>
+                <a href="${allotUrl}" class="nav-link ${page === 'allotment' ? 'active' : ''}"><i class="fas fa-chair"></i> Seat Allotment</a>
                 <a href="${eligUrl}" class="nav-link ${page === 'eligibility' ? 'active' : ''}"><i class="fas fa-check-circle"></i> Eligibility</a>
                 <a href="${resUrl}" class="nav-link ${page === 'reservation' ? 'active' : ''}"><i class="fas fa-users"></i> Reservation</a>
                 <a href="${docsUrl}" class="nav-link ${page === 'documents' ? 'active' : ''}"><i class="fas fa-file-invoice"></i> Documents</a>
@@ -61,6 +65,7 @@
                 <a href="${homeUrl}">Home</a>
                 <a href="${regUrl}">Registration</a>
                 <a href="${counselUrl}">Counselling</a>
+                <a href="${allotUrl}">Seat Allotment</a>
                 <a href="${eligUrl}">Eligibility</a>
                 <a href="${resUrl}">Reservation</a>
                 <a href="${docsUrl}">Documents</a>
@@ -120,6 +125,7 @@
                         (linkPath.includes('counselling') && currentPage === 'counselling') ||
                         (linkPath.includes('eligibility') && currentPage === 'eligibility') ||
                         (linkPath.includes('reservation') && currentPage === 'reservation') ||
+                        (linkPath.includes('allotment') && currentPage === 'allotment') ||
                         (linkPath.includes('document') && currentPage === 'documents');
 
                     if (isCurrentPageAnchor && targetId) {
