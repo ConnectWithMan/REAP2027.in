@@ -15,8 +15,9 @@
     const eligUrl = isFile ? 'eligibility.html' : '/eligibility';
     const resUrl = isFile ? 'reservation.html' : '/reservation';
     const docsUrl = isFile ? 'documents.html' : '/documents';
+    const cutoffUrl = isFile ? 'cutoff.html' : '/cutoff';
 
-    // Determine current active page ('home', 'registration', 'counselling', 'allotment', 'eligibility', 'reservation', or 'documents')
+    // Determine current active page ('home', 'registration', 'counselling', 'allotment', 'eligibility', 'reservation', 'documents', or 'cutoff')
     function getActivePage() {
         const bodyPage = document.body.getAttribute('data-page');
         if (bodyPage) return bodyPage.toLowerCase();
@@ -28,6 +29,7 @@
         if (path.includes('registration')) return 'registration';
         if (path.includes('counselling')) return 'counselling';
         if (path.includes('eligibility')) return 'eligibility';
+        if (path.includes('cutoff')) return 'cutoff';
         return 'home';
     }
 
@@ -46,7 +48,7 @@
                 <a href="${eligUrl}" class="nav-link ${page === 'eligibility' ? 'active' : ''}"><i class="fas fa-check-circle"></i> Eligibility</a>
                 <a href="${resUrl}" class="nav-link ${page === 'reservation' ? 'active' : ''}"><i class="fas fa-users"></i> Reservation</a>
                 <a href="${docsUrl}" class="nav-link ${page === 'documents' ? 'active' : ''}"><i class="fas fa-file-invoice"></i> Documents</a>
-                <a href="${homeUrl}#cutoffs" class="nav-link"><i class="fas fa-chart-line"></i> Cutoffs</a>
+                <a href="${cutoffUrl}" class="nav-link ${page === 'cutoff' ? 'active' : ''}"><i class="fas fa-chart-line"></i> Cutoffs</a>
             </nav>
             <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
@@ -67,10 +69,10 @@
                 <a href="${eligUrl}">Eligibility</a>
                 <a href="${resUrl}">Reservation</a>
                 <a href="${docsUrl}">Documents</a>
-                <a href="${homeUrl}#cutoffs">Cutoffs</a>
+                <a href="${cutoffUrl}">Cutoffs</a>
             </nav>
             <p class="footer-copy">
-                &copy; REAP 2027 . All Rights Reserved.
+                &copy; 2027 REAP Admission Guide. All official updates subject to CEG Rajasthan.
             </p>
         </div>
         `;
@@ -123,6 +125,7 @@
                         (linkPath.includes('eligibility') && currentPage === 'eligibility') ||
                         (linkPath.includes('reservation') && currentPage === 'reservation') ||
                         (linkPath.includes('allotment') && currentPage === 'allotment') ||
+                        (linkPath.includes('cutoff') && currentPage === 'cutoff') ||
                         (linkPath.includes('document') && currentPage === 'documents');
 
                     if (isCurrentPageAnchor && targetId) {
