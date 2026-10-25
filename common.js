@@ -70,7 +70,7 @@
                 <a href="${homeUrl}#cutoffs">Cutoffs</a>
             </nav>
             <p class="footer-copy">
-                &copy; 2027 REAP Admission Guide. All official updates subject to CEG Rajasthan.
+                &copy; REAP 2027 . All Rights Reserved.
             </p>
         </div>
         `;
