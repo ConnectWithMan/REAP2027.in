@@ -17,8 +17,12 @@
     const resUrl = isFile ? 'reservation.html' : '/reservation';
     const docsUrl = isFile ? 'documents.html' : '/documents';
     const cutoffUrl = isFile ? 'cutoff.html' : '/cutoff';
+    const aboutUrl = isFile ? 'about.html' : '/about';
+    const contactUrl = isFile ? 'contact.html' : '/contact';
+    const privacyUrl = isFile ? 'privacy.html' : '/privacy';
+    const termsUrl = isFile ? 'terms.html' : '/terms';
 
-    // Determine current active page ('home', 'registration', 'counselling', 'allotment', 'colleges', 'eligibility', 'reservation', 'documents', or 'cutoff')
+    // Determine current active page
     function getActivePage() {
         const bodyPage = document.body.getAttribute('data-page');
         if (bodyPage) return bodyPage.toLowerCase();
@@ -32,6 +36,11 @@
         if (path.includes('counselling')) return 'counselling';
         if (path.includes('eligibility')) return 'eligibility';
         if (path.includes('cutoff')) return 'cutoff';
+        if (path.includes('about')) return 'about';
+        if (path.includes('contact')) return 'contact';
+        if (path.includes('privacy')) return 'privacy';
+        if (path.includes('terms')) return 'terms';
+        if (path.includes('404')) return '404';
         return 'home';
     }
 
@@ -65,18 +74,13 @@
         return `
         <div class="container">
             <nav class="footer-nav" aria-label="Footer Navigation">
-                <a href="${homeUrl}">Home</a>
-                <a href="${regUrl}">Registration</a>
-                <a href="${counselUrl}">Counselling</a>
-                <a href="${allotUrl}">Seat Allotment</a>
-                <a href="${collegesUrl}">Colleges</a>
-                <a href="${eligUrl}">Eligibility</a>
-                <a href="${resUrl}">Reservation</a>
-                <a href="${docsUrl}">Documents</a>
-                <a href="${cutoffUrl}">Cutoffs</a>
+                <a href="${aboutUrl}">About Us</a>
+                <a href="${contactUrl}">Contact Us</a>
+                <a href="${privacyUrl}">Privacy Policy</a>
+                <a href="${termsUrl}">Terms &amp; Conditions</a>
             </nav>
             <p class="footer-copy">
-                &copy; 2027 REAP Admission Guide. All official updates subject to CEG Rajasthan.
+                &copy; REAP 2027 - All Rights Reserved.
             </p>
         </div>
         `;
@@ -131,6 +135,10 @@
                         (linkPath.includes('allotment') && currentPage === 'allotment') ||
                         (linkPath.includes('college') && currentPage === 'colleges') ||
                         (linkPath.includes('cutoff') && currentPage === 'cutoff') ||
+                        (linkPath.includes('about') && currentPage === 'about') ||
+                        (linkPath.includes('contact') && currentPage === 'contact') ||
+                        (linkPath.includes('privacy') && currentPage === 'privacy') ||
+                        (linkPath.includes('terms') && currentPage === 'terms') ||
                         (linkPath.includes('document') && currentPage === 'documents');
 
                     if (isCurrentPageAnchor && targetId) {
@@ -208,6 +216,96 @@
             .status-tag, a.status-tag {
                 max-width: 100% !important;
                 box-sizing: border-box !important;
+            }
+
+            /* ============================================================
+               COMMON NAVBAR BASE STYLING (DESKTOP & GLOBAL)
+               ============================================================ */
+            html, body {
+                overflow-x: clip !important;
+            }
+            .site-nav {
+                position: -webkit-sticky !important;
+                position: sticky !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                z-index: 1000 !important;
+                background: rgba(255, 255, 255, 0.95) !important;
+                backdrop-filter: blur(16px) !important;
+                -webkit-backdrop-filter: blur(16px) !important;
+                border-bottom: 1px solid rgba(226, 232, 240, 0.9) !important;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06) !important;
+                width: 100% !important;
+            }
+            .site-nav .nav-inner,
+            .nav-inner {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                height: 70px !important;
+                box-sizing: border-box !important;
+            }
+            .site-nav .brand-logo,
+            .brand-logo {
+                display: flex !important;
+                align-items: center !important;
+                gap: 0.75rem !important;
+                text-decoration: none !important;
+                flex-shrink: 0 !important;
+            }
+            .site-nav .brand-title,
+            .brand-title {
+                font-family: 'Poppins', sans-serif !important;
+                font-size: 1.65rem !important;
+                font-weight: 800 !important;
+                color: #0f172a !important;
+                line-height: 1.1 !important;
+                letter-spacing: -0.02em !important;
+            }
+            .site-nav .nav-menu {
+                display: flex;
+                align-items: center;
+                gap: 0.45rem;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            .site-nav .nav-link {
+                font-size: 0.88rem;
+                font-weight: 600;
+                color: #475569;
+                padding: 0.45rem 0.8rem;
+                border-radius: 9999px;
+                transition: all 0.15s ease;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                white-space: nowrap;
+            }
+            .site-nav .nav-link:hover {
+                color: #1d4ed8 !important;
+                background: rgba(29, 78, 216, 0.08) !important;
+            }
+            .site-nav .nav-link.active {
+                color: #1d4ed8 !important;
+                background: #eff6ff !important;
+            }
+            .site-nav .mobile-toggle,
+            .mobile-toggle {
+                display: none;
+            }
+
+            @media (min-width: 993px) and (max-width: 1200px) {
+                .site-nav .nav-menu {
+                    gap: 0.25rem !important;
+                }
+                .site-nav .nav-link {
+                    font-size: 0.82rem !important;
+                    padding: 0.4rem 0.55rem !important;
+                    gap: 0.3rem !important;
+                }
             }
 
             /* ============================================================
@@ -434,15 +532,17 @@
                     padding: 1.85rem 1rem 1.65rem !important;
                 }
                 .site-footer .footer-nav {
-                    display: grid !important;
-                    grid-template-columns: repeat(4, 1fr) !important;
-                    gap: 0.5rem 0.5rem !important;
-                    max-width: 520px !important;
+                    display: flex !important;
+                    justify-content: center !important;
+                    align-items: center !important;
+                    flex-wrap: wrap !important;
+                    gap: 0.6rem 1.4rem !important;
+                    max-width: 680px !important;
                     margin: 0 auto 1.15rem auto !important;
                 }
                 .site-footer .footer-nav a {
-                    font-size: 0.86rem !important;
-                    padding: 0.35rem 0.25rem !important;
+                    font-size: 0.88rem !important;
+                    padding: 0.35rem 0.65rem !important;
                     white-space: normal !important;
                 }
             }
@@ -455,6 +555,9 @@
                     padding-left: 1rem !important;
                     padding-right: 1rem !important;
                     box-sizing: border-box !important;
+                }
+                .brand-title {
+                    font-size: 1.45rem !important;
                 }
 
                 /* Button Groups Stack Full-Width for Easy Thumb Tapping */
@@ -595,7 +698,7 @@
                     padding-right: 0.75rem !important;
                 }
                 .brand-title {
-                    font-size: 1.1rem !important;
+                    font-size: 1.35rem !important;
                 }
                 .hero-title {
                     font-size: 1.4rem !important;
@@ -626,9 +729,13 @@
                     padding: 1rem 0.75rem !important;
                 }
                 .site-footer .footer-nav {
-                    grid-template-columns: repeat(2, 1fr) !important;
-                    max-width: 280px !important;
-                    gap: 0.5rem 0.75rem !important;
+                    display: flex !important;
+                    justify-content: center !important;
+                    align-items: center !important;
+                    flex-wrap: wrap !important;
+                    gap: 0.5rem 1rem !important;
+                    max-width: 100% !important;
+                    margin: 0 auto 1rem auto !important;
                 }
                 .site-footer .footer-nav a {
                     font-size: 0.84rem !important;
@@ -636,6 +743,55 @@
                 }
                 .site-footer .footer-copy {
                     font-size: 0.78rem !important;
+                }
+            }
+
+            /* ============================================================
+               FLOATING WHATSAPP BUTTON (GLOBAL)
+               ============================================================ */
+            .floating-whatsapp-btn {
+                position: fixed !important;
+                bottom: 24px !important;
+                right: 24px !important;
+                z-index: 99999 !important;
+                background: #25D366 !important;
+                color: #ffffff !important;
+                padding: 0.65rem 1.15rem !important;
+                border-radius: 9999px !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 0.55rem !important;
+                font-family: 'Poppins', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 0.88rem !important;
+                box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45) !important;
+                text-decoration: none !important;
+                transition: all 0.25s ease !important;
+            }
+            .floating-whatsapp-btn:hover {
+                background: #20ba59 !important;
+                transform: translateY(-3px) scale(1.04) !important;
+                box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6) !important;
+                color: #ffffff !important;
+            }
+            .floating-whatsapp-btn i {
+                font-size: 1.35rem !important;
+                line-height: 1 !important;
+            }
+            @media (max-width: 576px) {
+                .floating-whatsapp-btn span {
+                    display: none !important;
+                }
+                .floating-whatsapp-btn {
+                    width: 48px !important;
+                    height: 48px !important;
+                    min-width: 48px !important;
+                    min-height: 48px !important;
+                    padding: 0 !important;
+                    justify-content: center !important;
+                    border-radius: 50% !important;
+                    bottom: 18px !important;
+                    right: 18px !important;
                 }
             }
         `;
@@ -676,6 +832,19 @@
 
         // Ensure all tables are scrollable on mobile
         ensureResponsiveTables();
+
+        // Mount Floating WhatsApp Channel & Chat Button
+        if (!document.getElementById('reap-floating-whatsapp')) {
+            const waBtn = document.createElement('a');
+            waBtn.id = 'reap-floating-whatsapp';
+            waBtn.href = 'https://www.whatsapp.com/channel/0029Vb7KTAg4tRrwPwTa6l17';
+            waBtn.target = '_blank';
+            waBtn.rel = 'noopener noreferrer';
+            waBtn.className = 'floating-whatsapp-btn';
+            waBtn.setAttribute('aria-label', 'Join REAP 2027 WhatsApp Channel');
+            waBtn.innerHTML = '<i class="fab fa-whatsapp"></i><span>Join WhatsApp</span>';
+            document.body.appendChild(waBtn);
+        }
     }
 
     // Expose REAPCommon API to global scope
