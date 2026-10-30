@@ -47,7 +47,7 @@
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
         window.OneSignalDeferred = window.OneSignalDeferred || [];
-        OneSignalDeferred.push(async function(OneSignal) {
+        OneSignalDeferred.push(async function (OneSignal) {
             await OneSignal.init({
                 appId: "1ef35f19-5b81-462a-b563-3a231db56ad8",
             });
@@ -58,7 +58,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BSNSPWXM02"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-BSNSPWXM02');
     </script>
@@ -350,7 +350,7 @@
 
         .brand-title {
             font-family: var(--font-family-heading);
-            font-size: 1.25rem;
+            font-size: 1.65rem;
             font-weight: 800;
             color: var(--navy-dark);
             line-height: 1.1;
@@ -1460,9 +1460,8 @@
                         <span>Rajasthan Engineering Admission Process</span>
                     </h1>
                     <p class="hero-desc">
-                        Comprehensive guide to the <strong>Rajasthan Engineering Admission Process (REAP 2027)</strong>
-                        conducted by the <strong>Centre for Electronic Governance (CEG), Rajasthan</strong> on behalf of
-                        the <strong>Department of Technical Education, Government of Rajasthan</strong>. Gateway for
+                        Comprehensive guide to the <strong>Rajasthan Engineering Admission Process (REAP 2027)</strong>.
+                        Gateway for
                         admission to <strong>B.E./B.Tech</strong> and <strong>B.Arch</strong> programs across government
                         and private engineering institutions in Rajasthan.
                     </p>
@@ -1479,7 +1478,7 @@
                     <div class="hero-cta-group" style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.5rem;">
                         <a href="/registration" class="btn btn-primary"
                             style="background:var(--primary);color:#ffffff;padding:0.75rem 1.4rem;border-radius:var(--radius-xs);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:0.5rem;">
-                            <i class="fas fa-edit"></i> Registration Guide (₹885)
+                            <i class="fas fa-edit"></i> Registration Guide
                         </a>
                         <a href="/counselling" class="btn btn-secondary"
                             style="background:#ffffff;color:var(--navy-dark);border:1px solid var(--slate-border);padding:0.75rem 1.4rem;border-radius:var(--radius-xs);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:0.5rem;">
@@ -1529,7 +1528,7 @@
         <section class="section section-alt" id="overview">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">REAP 2027 — Overview &amp; Examination Highlights</h2>
+                    <h2 class="section-title">REAP 2027 — Overview &amp; Counselling Highlights</h2>
                     <p class="section-subtitle">Official admission parameters, conducting authority, programs offered,
                         application fees, and selection criteria for REAP 2027.</p>
                 </div>
@@ -2028,14 +2027,14 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">REAP 2027 — Official Schedule &amp; Key Dates</h2>
-                    <p class="section-subtitle">Tentative admission timeline for REAP 2027 registration, merit list
+                    <p class="section-subtitle">Tentative counselling timeline for REAP 2027 registration, merit list
                         declaration, choice filling, and seat allotment rounds announced by CEG Rajasthan.</p>
                 </div>
                 <div class="table-responsive">
                     <table class="data-table" aria-label="REAP 2027 Important Dates Table">
                         <thead>
                             <tr>
-                                <th>Event / Admission Milestone</th>
+                                <th>Event / Counselling Milestone</th>
                                 <th>Expected / Official Date</th>
                                 <th>Operational Authority</th>
                                 <th>Status / Action</th>
@@ -2160,7 +2159,7 @@
         <section class="section section-alt" id="roadmap">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">6-Stage REAP 2027 Admission Roadmap</h2>
+                    <h2 class="section-title">6-Stage REAP 2027 Counselling Roadmap</h2>
                     <p class="section-subtitle">Step-by-step walkthrough from initial eligibility qualification to final
                         enrollment at your allotted engineering institution.</p>
                 </div>
@@ -2188,7 +2187,7 @@
                             <div style="margin-top:0.75rem;">
                                 <a href="/registration" class="btn"
                                     style="background:var(--primary);color:#ffffff;font-size:0.8rem;padding:0.35rem 0.9rem;">
-                                    <i class="fas fa-arrow-right"></i> Open Registration Portal (₹885)
+                                    <i class="fas fa-arrow-right"></i> REAP Registration Process
                                 </a>
                             </div>
                         </div>
@@ -2465,10 +2464,12 @@
                         applicants, seat matrix, JEE Main difficulty level, and reservation policy. Always verify with
                         the official REAP 2027 portal at reap.rajasthan.gov.in.</div>
                 </div>
-                <div style="text-align:center;margin-top:2.5rem;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;">
+                <div
+                    style="text-align:center;margin-top:2.5rem;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;">
                     <a href="/colleges" class="btn btn-primary"
                         style="padding:0.85rem 2rem;font-size:1rem;border-radius:var(--radius-full);box-shadow:0 6px 20px rgba(29, 78, 216, 0.3);">
-                        <i class="fas fa-university"></i> Complete REAP College Directory <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-university"></i> Complete REAP College Directory <i
+                            class="fas fa-arrow-right"></i>
                     </a>
                     <a href="/cutoff" class="btn btn-secondary"
                         style="padding:0.85rem 2rem;font-size:1rem;border-radius:var(--radius-full);">
@@ -2689,11 +2690,10 @@
                 <div class="card"
                     style="margin-top:0;background:linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);border:1px solid #bfdbfe;border-radius:var(--radius-md);padding:2.5rem 2rem;text-align:center;">
                     <h2 style="font-size:1.75rem;color:var(--navy-dark);margin-bottom:0.75rem;">Explore All REAP 2027
-                        Admission Guides</h2>
+                        Counselling Guides</h2>
                     <p
                         style="font-size:0.95rem;color:var(--slate-text-muted);max-width:720px;margin:0 auto 1.75rem auto;line-height:1.6;">
-                        Complete information and official toolkits for candidates applying for engineering admissions in
-                        Rajasthan under CEG guidelines.
+                        Complete information and toolkits for candidates applying for engineering admissions.
                     </p>
                     <div class="callout-cta-group"
                         style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
