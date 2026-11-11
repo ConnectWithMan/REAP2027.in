@@ -11,6 +11,7 @@
     const homeUrl = isFile ? 'index.html' : '/';
     const regUrl = isFile ? 'registration.html' : '/registration';
     const counselUrl = isFile ? 'counselling.html' : '/counselling';
+    const choiceUrl = isFile ? 'choice-filling.html' : '/choice-filling';
     const allotUrl = isFile ? 'seat-allotment.html' : '/seat-allotment';
     const collegesUrl = isFile ? 'colleges.html' : '/colleges';
     const eligUrl = isFile ? 'eligibility.html' : '/eligibility';
@@ -34,6 +35,7 @@
         if (path.includes('reservation')) return 'reservation';
         if (path.includes('registration')) return 'registration';
         if (path.includes('counselling')) return 'counselling';
+        if (path.includes('choice')) return 'choice';
         if (path.includes('eligibility')) return 'eligibility';
         if (path.includes('cutoff')) return 'cutoff';
         if (path.includes('about')) return 'about';
@@ -44,23 +46,80 @@
         return 'home';
     }
 
-    // Generate Common Navbar HTML (Identical across all pages with active page highlight)
+    // Generate Common Navbar HTML with Grouped Dropdown Navigation
     function getNavbarHTML(page) {
+        const isCounsellingActive = ['counselling', 'registration', 'choice', 'allotment'].includes(page);
+        const isCollegesActive = ['colleges', 'cutoff'].includes(page);
+        const isRulesActive = ['eligibility', 'reservation', 'documents'].includes(page);
+
         return `
         <div class="container nav-inner">
             <a href="${homeUrl}" class="brand-logo" aria-label="REAP 2027 Admission Portal Home">
                 <div><span class="brand-title">REAP 2027</span></div>
             </a>
             <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
-                <a href="${homeUrl}" class="nav-link ${page === 'home' ? 'active' : ''}"><i class="fas fa-home"></i> Home</a>
-                <a href="${regUrl}" class="nav-link ${page === 'registration' ? 'active' : ''}"><i class="fas fa-edit"></i> Registration</a>
-                <a href="${counselUrl}" class="nav-link ${page === 'counselling' ? 'active' : ''}"><i class="fas fa-compass"></i> Counselling</a>
-                <a href="${allotUrl}" class="nav-link ${page === 'allotment' ? 'active' : ''}"><i class="fas fa-chair"></i> Seat Allotment</a>
-                <a href="${collegesUrl}" class="nav-link ${page === 'colleges' ? 'active' : ''}"><i class="fas fa-university"></i> Colleges</a>
-                <a href="${eligUrl}" class="nav-link ${page === 'eligibility' ? 'active' : ''}"><i class="fas fa-check-circle"></i> Eligibility</a>
-                <a href="${resUrl}" class="nav-link ${page === 'reservation' ? 'active' : ''}"><i class="fas fa-users"></i> Reservation</a>
-                <a href="${docsUrl}" class="nav-link ${page === 'documents' ? 'active' : ''}"><i class="fas fa-file-invoice"></i> Documents</a>
-                <a href="${cutoffUrl}" class="nav-link ${page === 'cutoff' ? 'active' : ''}"><i class="fas fa-chart-line"></i> Cutoffs</a>
+                <div class="nav-item">
+                    <a href="${homeUrl}" class="nav-link ${page === 'home' ? 'active' : ''}">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </div>
+
+                <div class="nav-item nav-dropdown ${isCounsellingActive ? 'open active' : ''}">
+                    <a href="${counselUrl}" class="nav-link dropdown-toggle ${isCounsellingActive ? 'active' : ''}" aria-expanded="${isCounsellingActive ? 'true' : 'false'}" aria-haspopup="true">
+                        <i class="fas fa-compass"></i> Counselling <i class="fas fa-chevron-down nav-arrow"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-label="Counselling Submenu">
+                        <a href="${counselUrl}" class="dropdown-item ${page === 'counselling' ? 'active' : ''}">
+                            <i class="fas fa-compass"></i> Counselling Overview
+                        </a>
+                        <a href="${regUrl}" class="dropdown-item ${page === 'registration' ? 'active' : ''}">
+                            <i class="fas fa-edit"></i> Registration Guide
+                        </a>
+                        <a href="${choiceUrl}" class="dropdown-item ${page === 'choice' ? 'active' : ''}">
+                            <i class="fas fa-list-check"></i> Choice Filling &amp; Locking
+                        </a>
+                        <a href="${allotUrl}" class="dropdown-item ${page === 'allotment' ? 'active' : ''}">
+                            <i class="fas fa-chair"></i> Seat Allotment &amp; Upward
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-item nav-dropdown ${isCollegesActive ? 'open active' : ''}">
+                    <a href="${collegesUrl}" class="nav-link dropdown-toggle ${isCollegesActive ? 'active' : ''}" aria-expanded="${isCollegesActive ? 'true' : 'false'}" aria-haspopup="true">
+                        <i class="fas fa-university"></i> Colleges &amp; Cutoffs <i class="fas fa-chevron-down nav-arrow"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-label="Colleges & Cutoffs Submenu">
+                        <a href="${collegesUrl}" class="dropdown-item ${page === 'colleges' ? 'active' : ''}">
+                            <i class="fas fa-university"></i> Participating Colleges
+                        </a>
+                        <a href="${cutoffUrl}" class="dropdown-item ${page === 'cutoff' ? 'active' : ''}">
+                            <i class="fas fa-chart-line"></i> Cutoff Trends &amp; Ranks
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-item nav-dropdown ${isRulesActive ? 'open active' : ''}">
+                    <a href="${eligUrl}" class="nav-link dropdown-toggle ${isRulesActive ? 'active' : ''}" aria-expanded="${isRulesActive ? 'true' : 'false'}" aria-haspopup="true">
+                        <i class="fas fa-clipboard-list"></i> Rules &amp; Documents <i class="fas fa-chevron-down nav-arrow"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-label="Rules & Documents Submenu">
+                        <a href="${eligUrl}" class="dropdown-item ${page === 'eligibility' ? 'active' : ''}">
+                            <i class="fas fa-check-circle"></i> Eligibility Criteria
+                        </a>
+                        <a href="${resUrl}" class="dropdown-item ${page === 'reservation' ? 'active' : ''}">
+                            <i class="fas fa-users"></i> Reservation &amp; Quotas
+                        </a>
+                        <a href="${docsUrl}" class="dropdown-item ${page === 'documents' ? 'active' : ''}">
+                            <i class="fas fa-file-invoice"></i> Documents Required
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-item nav-cta">
+                    <a href="https://www.whatsapp.com/channel/0029Vb7KTAg4tRrwPwTa6l17" target="_blank" rel="noopener noreferrer" class="nav-whatsapp-btn" title="Join Official REAP 2027 WhatsApp Channel">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Channel
+                    </a>
+                </div>
             </nav>
             <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
@@ -86,7 +145,7 @@
         `;
     }
 
-    // Initialize Mobile Navigation and Smooth In-Page Anchor Scrolling
+    // Initialize Mobile Navigation and Dropdowns
     function initMobileNav() {
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
@@ -108,7 +167,27 @@
             }
         });
 
-        navMenu.querySelectorAll('.nav-link').forEach(link => {
+        // Mobile Dropdown Accordion Toggle (tap on dropdown link toggles submenu on mobile)
+        navMenu.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = toggle.closest('.nav-dropdown');
+                    if (parent) {
+                        const isOpen = parent.classList.contains('open');
+                        navMenu.querySelectorAll('.nav-dropdown').forEach(d => {
+                            if (d !== parent) d.classList.remove('open');
+                        });
+                        parent.classList.toggle('open', !isOpen);
+                        toggle.setAttribute('aria-expanded', !isOpen);
+                    }
+                }
+            });
+        });
+
+        // Close mobile menu on clicking any navigation sub-item or direct link
+        navMenu.querySelectorAll('.dropdown-item, .nav-link:not(.dropdown-toggle), .nav-whatsapp-btn').forEach(link => {
             link.addEventListener('click', (e) => {
                 navMenu.classList.remove('active');
                 const icon = newToggle.querySelector('i');
@@ -130,6 +209,7 @@
                         (linkPath.includes('index') && currentPage === 'home') ||
                         (linkPath.includes('registration') && currentPage === 'registration') ||
                         (linkPath.includes('counselling') && currentPage === 'counselling') ||
+                        (linkPath.includes('choice') && currentPage === 'choice') ||
                         (linkPath.includes('eligibility') && currentPage === 'eligibility') ||
                         (linkPath.includes('reservation') && currentPage === 'reservation') ||
                         (linkPath.includes('allotment') && currentPage === 'allotment') ||
@@ -271,40 +351,154 @@
                 margin: 0;
                 padding: 0;
             }
+            .site-nav .nav-item {
+                position: relative;
+                display: flex;
+                align-items: center;
+            }
             .site-nav .nav-link {
-                font-size: 0.88rem;
+                font-size: 0.9rem;
                 font-weight: 600;
-                color: #475569;
-                padding: 0.45rem 0.8rem;
+                color: #334155;
+                padding: 0.5rem 0.85rem;
                 border-radius: 9999px;
-                transition: all 0.15s ease;
+                transition: all 0.18s ease;
                 text-decoration: none;
                 display: inline-flex;
                 align-items: center;
-                gap: 0.4rem;
+                gap: 0.45rem;
                 white-space: nowrap;
+                cursor: pointer;
             }
             .site-nav .nav-link:hover {
                 color: #1d4ed8 !important;
                 background: rgba(29, 78, 216, 0.08) !important;
             }
-            .site-nav .nav-link.active {
+            .site-nav .nav-link.active,
+            .site-nav .nav-item.active > .nav-link {
                 color: #1d4ed8 !important;
                 background: #eff6ff !important;
             }
+            .site-nav .nav-arrow {
+                font-size: 0.72rem;
+                margin-left: 0.15rem;
+                transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+                color: #94a3b8;
+            }
+            .site-nav .nav-dropdown:hover .nav-arrow,
+            .site-nav .nav-dropdown.open .nav-arrow {
+                transform: rotate(180deg);
+                color: #1d4ed8;
+            }
+
+            /* DESKTOP DROPDOWN MENU */
+            @media (min-width: 993px) {
+                .site-nav .nav-dropdown {
+                    padding: 0.4rem 0;
+                }
+                .site-nav .dropdown-menu {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    min-width: 250px;
+                    background: #ffffff;
+                    border: 1px solid #e2e8f0;
+                    border-radius: 12px;
+                    box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.14), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
+                    padding: 0.5rem;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.25rem;
+                    opacity: 0;
+                    visibility: hidden;
+                    transform: translateY(8px);
+                    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+                    z-index: 1005;
+                }
+                .site-nav .dropdown-menu::before {
+                    content: '';
+                    position: absolute;
+                    top: -12px;
+                    left: 0;
+                    width: 100%;
+                    height: 12px;
+                }
+                .site-nav .nav-dropdown:hover .dropdown-menu,
+                .site-nav .nav-dropdown:focus-within .dropdown-menu {
+                    opacity: 1;
+                    visibility: visible;
+                    transform: translateY(0);
+                }
+                .site-nav .dropdown-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+                    padding: 0.6rem 0.9rem;
+                    border-radius: 8px;
+                    font-size: 0.88rem;
+                    font-weight: 500;
+                    color: #334155;
+                    text-decoration: none;
+                    transition: all 0.15s ease;
+                    white-space: nowrap;
+                }
+                .site-nav .dropdown-item i {
+                    color: #1d4ed8;
+                    font-size: 0.9rem;
+                    width: 18px;
+                    text-align: center;
+                    flex-shrink: 0;
+                }
+                .site-nav .dropdown-item:hover {
+                    background: #f1f5f9;
+                    color: #1d4ed8;
+                    transform: translateX(3px);
+                }
+                .site-nav .dropdown-item.active {
+                    background: #eff6ff;
+                    color: #1d4ed8;
+                    font-weight: 600;
+                }
+            }
+
+            /* WHATSAPP NAV BUTTON */
+            .site-nav .nav-whatsapp-btn {
+                background: #25D366;
+                color: #ffffff !important;
+                padding: 0.45rem 1rem;
+                border-radius: 9999px;
+                font-size: 0.86rem;
+                font-weight: 600;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.45rem;
+                text-decoration: none;
+                box-shadow: 0 2px 6px rgba(37, 211, 102, 0.3);
+                transition: all 0.2s ease;
+                white-space: nowrap;
+                margin-left: 0.35rem;
+            }
+            .site-nav .nav-whatsapp-btn:hover {
+                background: #1eb956;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(37, 211, 102, 0.45);
+            }
+
             .site-nav .mobile-toggle,
             .mobile-toggle {
                 display: none;
             }
 
-            @media (min-width: 993px) and (max-width: 1200px) {
+            @media (min-width: 993px) and (max-width: 1260px) {
                 .site-nav .nav-menu {
                     gap: 0.25rem !important;
                 }
                 .site-nav .nav-link {
-                    font-size: 0.82rem !important;
-                    padding: 0.4rem 0.55rem !important;
-                    gap: 0.3rem !important;
+                    font-size: 0.84rem !important;
+                    padding: 0.42rem 0.65rem !important;
+                }
+                .site-nav .brand-title {
+                    font-size: 1.5rem !important;
                 }
             }
 
@@ -444,15 +638,21 @@
                     overflow-y: auto !important;
                     -webkit-overflow-scrolling: touch !important;
                     background: #ffffff !important;
-                    padding: 0.85rem 1rem !important;
+                    padding: 0.85rem 1rem 1.75rem !important;
                     border-bottom: 2px solid #cbd5e1 !important;
                     box-shadow: 0 16px 36px rgba(15, 23, 42, 0.18) !important;
-                    gap: 0.35rem !important;
+                    gap: 0.45rem !important;
                     z-index: 99999 !important;
                     box-sizing: border-box !important;
                 }
                 .site-nav .nav-menu.active {
                     display: flex !important;
+                }
+                .site-nav .nav-item {
+                    width: 100% !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    align-items: stretch !important;
                 }
                 .site-nav .nav-link {
                     width: 100% !important;
@@ -463,6 +663,7 @@
                     border-radius: 8px !important;
                     display: flex !important;
                     align-items: center !important;
+                    justify-content: flex-start !important;
                     gap: 0.75rem !important;
                     color: #1e293b !important;
                     text-decoration: none !important;
@@ -470,6 +671,66 @@
                     border: 1px solid #e2e8f0 !important;
                     background: #f8fafc !important;
                     transition: all 0.15s ease !important;
+                }
+                .site-nav .dropdown-toggle {
+                    justify-content: space-between !important;
+                }
+                .site-nav .dropdown-menu {
+                    display: none;
+                    flex-direction: column !important;
+                    width: 100% !important;
+                    background: #f1f5f9 !important;
+                    border-radius: 8px !important;
+                    border: 1px solid #e2e8f0 !important;
+                    margin-top: 0.35rem !important;
+                    padding: 0.35rem !important;
+                    gap: 0.25rem !important;
+                    box-sizing: border-box !important;
+                }
+                .site-nav .nav-dropdown.open .dropdown-menu {
+                    display: flex !important;
+                }
+                .site-nav .nav-dropdown.open .nav-arrow {
+                    transform: rotate(180deg) !important;
+                    color: #1d4ed8 !important;
+                }
+                .site-nav .dropdown-item {
+                    display: flex !important;
+                    align-items: center !important;
+                    gap: 0.65rem !important;
+                    padding: 0.65rem 0.85rem !important;
+                    min-height: 40px !important;
+                    font-size: 0.9rem !important;
+                    font-weight: 500 !important;
+                    color: #334155 !important;
+                    text-decoration: none !important;
+                    border-radius: 6px !important;
+                    background: #ffffff !important;
+                    border: 1px solid rgba(226, 232, 240, 0.7) !important;
+                    box-sizing: border-box !important;
+                }
+                .site-nav .dropdown-item.active {
+                    background: #eff6ff !important;
+                    color: #1d4ed8 !important;
+                    font-weight: 600 !important;
+                    border-color: #93c5fd !important;
+                }
+                .site-nav .dropdown-item i {
+                    color: #1d4ed8 !important;
+                    width: 18px !important;
+                    text-align: center !important;
+                }
+                .site-nav .nav-cta {
+                    margin-top: 0.5rem !important;
+                }
+                .site-nav .nav-whatsapp-btn {
+                    width: 100% !important;
+                    justify-content: center !important;
+                    padding: 0.75rem 1rem !important;
+                    min-height: 44px !important;
+                    font-size: 0.95rem !important;
+                    margin-left: 0 !important;
+                    box-sizing: border-box !important;
                 }
                 .site-nav .nav-link:hover,
                 .site-nav .nav-link.active {
